@@ -1,4 +1,3 @@
-import 'package:doctor_consultant_mobile_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -10,6 +9,7 @@ class SpecialistCard extends StatelessWidget {
   SpecialistCard({this.color, this.doctor, this.icon, this.name});
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       width: 110.0,
       margin: EdgeInsets.only(left: 18.0),
@@ -30,14 +30,11 @@ class SpecialistCard extends StatelessWidget {
           Text(
             name,
             textAlign: TextAlign.center,
-            style: kTitleStyle.copyWith(
-              color: Colors.white,
-              height: 1.0,
-            ),
+            style: theme.textTheme.headline3.copyWith(height: 1.0,color: Colors.white),
           ),
           SizedBox(height: 5.0),
           Text("$doctor Doctors",
-              style: kSubtitleStyle.copyWith(color: Colors.white)),
+              style: theme.textTheme.subtitle2.copyWith(color: Colors.white)),
         ],
       ),
     );

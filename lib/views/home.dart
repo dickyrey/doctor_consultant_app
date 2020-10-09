@@ -1,13 +1,16 @@
-import 'package:doctor_consultant_mobile_app/constants.dart';
+import 'package:doctor_consultant_mobile_app/helpers/colors.dart';
+import 'package:doctor_consultant_mobile_app/providers/theme_provider.dart';
 import 'package:doctor_consultant_mobile_app/widgets/consultation_card.dart';
 import 'package:doctor_consultant_mobile_app/widgets/doctor_card.dart';
 import 'package:doctor_consultant_mobile_app/widgets/specialist_card.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_consultant_mobile_app/models/doctor.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.0),
@@ -26,21 +29,26 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-            title: Text("Melody", style: kTitleStyle),
-            subtitle: Text("Find your suitable doctor here",
-                style: kSubtitleStyle.copyWith(fontSize: 12.0)),
+            title: Text("Melody", style: theme.textTheme.headline3),
+            subtitle: Text(
+              "Find your suitable doctor here",
+              style: theme.textTheme.subtitle2,
+            ),
             trailing: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color: kGrey,
+                color: theme.cardColor,
               ),
               child: IconButton(
                 icon: Icon(
                   Icons.date_range,
-                  color: kGreen,
+                  color: kGreenColor,
                   size: 30.0,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .changeTheme();
+                },
               ),
             ),
           ),
@@ -56,20 +64,11 @@ class Home extends StatelessWidget {
                 width: double.infinity,
                 height: 50.0,
                 margin: EdgeInsets.symmetric(horizontal: 18.0),
-                padding: EdgeInsets.symmetric(horizontal: 18.0),
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(14.0),
-                  border: Border.all(color: kBlack.withOpacity(.2)),
-                ),
                 child: TextField(
                   decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search, color: kBlack),
+                    suffixIcon: Icon(Icons.search, color: kPrimaryLightColor),
                     hintText: "Search doctor, categories, topic . . . .",
-                    hintStyle: kSubtitleStyle.copyWith(
-                      color: kBlack.withOpacity(.4),
-                    ),
                     border: InputBorder.none,
                   ),
                 ),
@@ -77,7 +76,7 @@ class Home extends StatelessWidget {
               SizedBox(height: 25.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: Text("Specialist", style: kTitleStyle),
+                child: Text("Specialist", style: theme.textTheme.headline3),
               ),
               SizedBox(height: 15.0),
               Container(
@@ -90,31 +89,31 @@ class Home extends StatelessWidget {
                   children: <Widget>[
                     SpecialistCard(
                       name: "Cardio Specialist",
-                      color: kGreen,
+                      color: kGreenColor,
                       doctor: "27",
                       icon: "assets/lungs.svg",
                     ),
                     SpecialistCard(
                       name: "Heart\nIssue",
-                      color: kBlue,
+                      color: kBlueColor,
                       doctor: "57",
                       icon: "assets/doctor.svg",
                     ),
                     SpecialistCard(
                       name: "Dental\nCard",
-                      color: kOrange,
+                      color: kOrangeColor,
                       doctor: "17",
                       icon: "assets/dentist.svg",
                     ),
                     SpecialistCard(
                       name: "Physio\nTherapy",
-                      color: kPurple,
+                      color: kPurpleColor,
                       doctor: "32",
                       icon: "assets/wheelchair.svg",
                     ),
                     SpecialistCard(
                       name: "Eyes\nSpecialist",
-                      color: kGreen,
+                      color: kGreenColor,
                       doctor: "32",
                       icon: "assets/ophtalmology.svg",
                     ),
@@ -141,9 +140,9 @@ class Home extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 18.0),
                 child: Row(
                   children: <Widget>[
-                    Text("Top Doctor", style: kTitleStyle),
+                    Text("Top Doctor", style: theme.textTheme.headline3),
                     Spacer(),
-                    Text("View all", style: kSubtitleStyle),
+                    Text("View all", style: theme.textTheme.subtitle1),
                   ],
                 ),
               ),

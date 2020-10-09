@@ -1,4 +1,4 @@
-import 'package:doctor_consultant_mobile_app/constants.dart';
+import 'package:doctor_consultant_mobile_app/helpers/colors.dart';
 import 'package:doctor_consultant_mobile_app/models/doctor.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +7,7 @@ class ConsultationCard extends StatelessWidget {
   ConsultationCard({this.consultation});
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Card(
       margin: EdgeInsets.only(left: 18.0, bottom: 5.0),
       elevation: 1.0,
@@ -25,7 +26,7 @@ class ConsultationCard extends StatelessWidget {
                 height: 30.0,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: kGreen,
+                  color: kGreenColor,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(12.0),
                     bottomLeft: Radius.circular(12.0),
@@ -33,7 +34,7 @@ class ConsultationCard extends StatelessWidget {
                 ),
                 child: Text(
                   "\$${consultation.price}",
-                  style: kSubtitleStyle.copyWith(color: Colors.white),
+                  style: theme.textTheme.subtitle1.copyWith(color: Colors.white),
                 ),
               ),
             ),
@@ -46,19 +47,19 @@ class ConsultationCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(consultation.title, style: kTitleStyle),
+                    Text(consultation.title, style: theme.textTheme.headline3),
                     SizedBox(height: 15.0),
                     Expanded(
                       child: Row(
                         children: <Widget>[
                           Container(
                             width: 2.0,
-                            color: kGreen,
+                            color: kGreenColor,
                           ),
                           SizedBox(width: 12.0),
                           Expanded(
                             child: Text(consultation.subtitle,
-                                style: kSubtitleStyle),
+                                style: theme.textTheme.subtitle2),
                           ),
                         ],
                       ),

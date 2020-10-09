@@ -1,4 +1,3 @@
-import 'package:doctor_consultant_mobile_app/constants.dart';
 import 'package:doctor_consultant_mobile_app/models/doctor.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ class DoctorCard extends StatelessWidget {
   DoctorCard({this.doctor});
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Card(
       margin: EdgeInsets.only(left: 18.0, bottom: 2.0),
       shape: RoundedRectangleBorder(
@@ -32,9 +32,7 @@ class DoctorCard extends StatelessWidget {
               overflow: TextOverflow.clip,
               maxLines: 1,
               textAlign: TextAlign.center,
-              style: kTitleStyle.copyWith(
-                fontSize: 16.0,
-              ),
+              style: theme.textTheme.headline3
             ),
             SizedBox(height: 6.0),
             Text(
@@ -42,9 +40,7 @@ class DoctorCard extends StatelessWidget {
               overflow: TextOverflow.clip,
               maxLines: 1,
               textAlign: TextAlign.center,
-              style: kTitleStyle.copyWith(
-                fontSize: 10.0,
-              ),
+              style: theme.textTheme.subtitle2
             ),
           ],
         ),
